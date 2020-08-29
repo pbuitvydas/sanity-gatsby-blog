@@ -1,5 +1,5 @@
 import {format} from 'date-fns'
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {buildImageObj, getBlogUrl} from '../lib/helpers'
 import {imageUrlFor} from '../lib/image-url'
 import {Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography} from "@material-ui/core";
@@ -17,11 +17,10 @@ const useStyles = makeStyles({
 
 function BlogPostPreview (props) {
   const classes = useStyles();
-  const [excerpt, setExcerpt] = useState();
-
-  useEffect(() => {
-    setExcerpt(props._rawExcerpt[0].children[0].text);
-  }, []);
+  let excerpt;
+  if (props._rawExcerpt && props._rawExcerpt[0].children) {
+    excerpt = props._rawExcerpt[0].children[0].text;
+  }
 
   return (
     <Card className={classes.root} raised>
