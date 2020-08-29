@@ -1,21 +1,16 @@
 import {Link} from 'gatsby'
 import React from 'react'
-import BlogPostPreview from './blog-post-preview'
 
 import styles from './blog-post-preview-list.module.css'
+import {responsiveTitle1} from "./typography.module.css";
+import BlogPostPreviewGrid from "./blog-post-preview-grid";
 
-function BlogPostPreviewGrid (props) {
+
+function BlogPostPreviewList (props) {
   return (
     <div className={styles.root}>
-      {props.title && <h2 className={styles.headline}>{props.title}</h2>}
-      <ul className={styles.grid}>
-        {props.nodes &&
-          props.nodes.map(node => (
-            <li key={node.id}>
-              <BlogPostPreview {...node} isInList />
-            </li>
-          ))}
-      </ul>
+      {props.title && <h1 className={responsiveTitle1}>{props.title}</h1>}
+      {props.nodes && props.nodes.length > 0 && <BlogPostPreviewGrid nodes={props.nodes} />}
       {props.browseMoreHref && (
         <div className={styles.browseMoreNav}>
           <Link to={props.browseMoreHref}>Browse more</Link>
@@ -25,10 +20,10 @@ function BlogPostPreviewGrid (props) {
   )
 }
 
-BlogPostPreviewGrid.defaultProps = {
+BlogPostPreviewList.defaultProps = {
   title: '',
   nodes: [],
   browseMoreHref: ''
 }
 
-export default BlogPostPreviewGrid
+export default BlogPostPreviewList
