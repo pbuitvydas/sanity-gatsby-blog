@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // nodejs library to set properties for components
@@ -12,15 +12,18 @@ import styles from "../../assets/jss/material-kit-react/components/parallaxStyle
 const useStyles = makeStyles(styles);
 
 export default function Parallax(props) {
-  let windowScrollTop;
-  if (window.innerWidth >= 768) {
-    windowScrollTop = window.pageYOffset / 3;
-  } else {
-    windowScrollTop = 0;
-  }
-  const [transform, setTransform] = React.useState(
-    "translate3d(0," + windowScrollTop + "px,0)"
-  );
+  const [transform, setTransform] = React.useState("");
+
+  useEffect(() => {
+    let windowScrollTop;
+    if (window.innerWidth >= 768) {
+      windowScrollTop = window.pageYOffset / 3;
+    } else {
+      windowScrollTop = 0;
+    }
+    setTransform("translate3d(0," + windowScrollTop + "px,0)");
+  }, []);
+
   React.useEffect(() => {
     if (window.innerWidth >= 768) {
       window.addEventListener("scroll", resetTransform);

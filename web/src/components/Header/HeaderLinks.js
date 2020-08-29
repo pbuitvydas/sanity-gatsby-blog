@@ -1,7 +1,6 @@
 /*eslint-disable*/
-import React from "react";
+import React, {useEffect, useState} from "react";
 // react components for routing our app without refresh
-
 // @material-ui/core components
 import {makeStyles} from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
@@ -21,6 +20,12 @@ const useStyles = makeStyles(styles);
 
 export default function HeaderLinks(props) {
   const classes = useStyles();
+  const [tooltipPlacement, setTooltipPlacement] = useState("top");
+
+  useEffect(() => {
+    setTooltipPlacement(window.innerWidth > 959 ? "top" : "left");
+  }, []);
+
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
@@ -45,7 +50,7 @@ export default function HeaderLinks(props) {
         <Tooltip
           id="instagram-youtube"
           title="Follow us on youtube"
-          placement={window.innerWidth > 959 ? "top" : "left"}
+          placement={tooltipPlacement}
           classes={{ tooltip: classes.tooltip }}
         >
           <Button
@@ -62,7 +67,7 @@ export default function HeaderLinks(props) {
         <Tooltip
           id="instagram-facebook"
           title="Follow us on facebook"
-          placement={window.innerWidth > 959 ? "top" : "left"}
+          placement={tooltipPlacement}
           classes={{ tooltip: classes.tooltip }}
         >
           <Button
@@ -79,7 +84,7 @@ export default function HeaderLinks(props) {
         <Tooltip
           id="instagram-tooltip"
           title="Follow us on instagram"
-          placement={window.innerWidth > 959 ? "top" : "left"}
+          placement={tooltipPlacement}
           classes={{ tooltip: classes.tooltip }}
         >
           <Button
