@@ -1,7 +1,8 @@
 import React from 'react'
-import LayoutContainer from "../containers/layout";
-import Container from "../components/container";
-import {responsiveTitle1} from "../components/typography.module.css";
+
+import Container from '../components/container'
+import responsiveTitle1 from '../components/typography.module.css'
+import LayoutContainer from '../containers/layout'
 
 const About = () => {
   return (

@@ -1,21 +1,22 @@
+import {makeStyles} from '@material-ui/core/styles'
 import {differenceInDays, distanceInWords, format} from 'date-fns'
 import React from 'react'
+
+import styles from '../assets/jss/material-kit-react/views/landingPage'
+import LayoutContainer from '../containers/layout'
 import {buildImageObj} from '../lib/helpers'
 import {imageUrlFor} from '../lib/image-url'
-import PortableText from './portableText'
-import Container from './container'
 import AuthorList from './author-list'
-import {makeStyles} from "@material-ui/core/styles";
-import styles from "../assets/jss/material-kit-react/views/landingPage";
 import styles2 from './blog-post.module.css'
-import LayoutContainer from "../containers/layout";
+import Container from './container'
+import PortableText from './portableText'
 
-const useStyles = makeStyles(styles);
+const useStyles = makeStyles(styles)
 
-const dashboardRoutes = [];
+const dashboardRoutes = []
 
 function BlogPost (props) {
-  const classes = useStyles();
+  const classes = useStyles()
   const {_rawBody, authors, categories, title, mainImage, publishedAt} = props
   return (
     <LayoutContainer mainImageSmall mainImageUrl={imageUrlFor(buildImageObj(mainImage))
@@ -28,7 +29,7 @@ function BlogPost (props) {
         <div className={`${styles2.grid} ${styles2.root}`}>
           <div className={styles2.mainContent}>
             <h1 className={styles2.title}>{title}</h1>
-            {_rawBody && <PortableText blocks={_rawBody}/>}
+            {_rawBody && <PortableText blocks={_rawBody} />}
           </div>
           <aside className={styles2.metaContent}>
             {publishedAt && (
@@ -38,7 +39,7 @@ function BlogPost (props) {
                   : format(new Date(publishedAt), 'MMMM Do, YYYY')}
               </div>
             )}
-            {authors && <AuthorList items={authors} title='Authors'/>}
+            {authors && <AuthorList items={authors} title='Authors' />}
             {categories && (
               <div className={styles2.categories}>
                 <h3 className={styles2.categoriesHeadline}>Categories</h3>

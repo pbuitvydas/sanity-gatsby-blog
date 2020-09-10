@@ -1,8 +1,9 @@
-import React from 'react'
 import {graphql} from 'gatsby'
+import React from 'react'
+
+import BlogPost from '../components/blog-post'
 import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
-import BlogPost from '../components/blog-post'
 import SEO from '../components/seo'
 import {toPlainText} from '../lib/helpers'
 

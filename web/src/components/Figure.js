@@ -1,6 +1,7 @@
-import React from 'react'
 import Img from 'gatsby-image'
 import {getFluidGatsbyImage} from 'gatsby-source-sanity'
+import React from 'react'
+
 import clientConfig from '../../client-config'
 
 export default ({node}) => {

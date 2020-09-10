@@ -1,12 +1,13 @@
-import React from 'react'
 import {graphql} from 'gatsby'
-import {filterOutDocsPublishedInTheFuture, filterOutDocsWithoutSlugs, mapEdgesToNodes} from '../lib/helpers'
+import React from 'react'
+
 import BlogPostPreviewList from '../components/blog-post-preview-list'
 import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
 import LayoutContainer from '../containers/layout'
+import * as Helpers from '../lib/helpers'
 
 export const query = graphql`
   fragment SanityImage on SanityMainImage {
@@ -74,9 +75,9 @@ const IndexPage = props => {
 
   const site = (data || {}).site
   const postNodes = (data || {}).posts
-    ? mapEdgesToNodes(data.posts)
-      .filter(filterOutDocsWithoutSlugs)
-      .filter(filterOutDocsPublishedInTheFuture)
+    ? Helpers.mapEdgesToNodes(data.posts)
+      .filter(Helpers.filterOutDocsWithoutSlugs)
+      .filter(Helpers.filterOutDocsPublishedInTheFuture)
     : []
 
   if (!site) {
@@ -93,13 +94,13 @@ const IndexPage = props => {
         keywords={site.keywords}
       />
       <Container>
-      {postNodes && (
-        <BlogPostPreviewList
-          title='Latest blog posts'
-          nodes={postNodes}
-          browseMoreHref='/archive/'
-        />
-      )}
+        {postNodes && (
+          <BlogPostPreviewList
+            title='Latest blog posts'
+            nodes={postNodes}
+            browseMoreHref='/archive/'
+          />
+        )}
       </Container>
     </LayoutContainer>
   )

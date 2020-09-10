@@ -1,10 +1,9 @@
 import {Link} from 'gatsby'
 import React from 'react'
 
+import BlogPostPreviewGrid from './blog-post-preview-grid'
 import styles from './blog-post-preview-list.module.css'
-import {responsiveTitle1} from "./typography.module.css";
-import BlogPostPreviewGrid from "./blog-post-preview-grid";
-
+import responsiveTitle1 from './typography.module.css'
 
 function BlogPostPreviewList (props) {
   return (

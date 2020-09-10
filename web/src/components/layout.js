@@ -1,33 +1,32 @@
+import {makeStyles} from '@material-ui/core/styles'
 import React from 'react'
 
-import '../styles/layout.css'
-import HeaderLinks from "./Header/HeaderLinks";
-import Parallax from "./Parallax/Parallax";
-import GridContainer from "./Grid/GridContainer";
-import GridItem from "./Grid/GridItem";
-import Footer from "./Footer/Footer";
-import styles from "../assets/jss/material-kit-react/views/landingPage";
-import {makeStyles} from "@material-ui/core/styles";
-import Header from "./Header/Header";
+import styles from '../assets/jss/material-kit-react/views/landingPage'
+import Footer from './Footer/Footer'
+import GridContainer from './Grid/GridContainer'
+import GridItem from './Grid/GridItem'
+import Header from './Header/Header'
+import HeaderLinks from './Header/HeaderLinks'
+import Parallax from './Parallax/Parallax'
 
-const useStyles = makeStyles(styles);
+const useStyles = makeStyles(styles)
 
 const Layout = ({children, siteTitle, mainImageUrl, mainImageSmall}) => {
-  const classes = useStyles();
+  const classes = useStyles()
   return (
     <div>
       <Header
-        color="transparent"
+        color='transparent'
         routes={[]}
         brand={siteTitle}
-        rightLinks={<HeaderLinks/>}
+        rightLinks={<HeaderLinks />}
         fixed
         changeColorOnScroll={{
           height: 400,
-          color: "white"
+          color: 'white'
         }}
       />
-      <Parallax small={mainImageSmall} filter image={mainImageUrl || require("../assets/img/DSC01867.jpg")}>
+      <Parallax small={mainImageSmall} filter image={mainImageUrl || require('../assets/img/DSC01867.jpg')}>
         {!mainImageSmall && (
           <div className={classes.container}>
             <GridContainer>
@@ -49,9 +48,9 @@ const Layout = ({children, siteTitle, mainImageUrl, mainImageSmall}) => {
           {children}
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
-  );
+  )
 }
 
 export default Layout
