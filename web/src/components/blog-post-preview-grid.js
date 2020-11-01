@@ -1,23 +1,32 @@
+import {Grid} from '@material-ui/core'
+import {makeStyles} from '@material-ui/core/styles'
 import {Link} from 'gatsby'
 import React from 'react'
 
 import BlogPostPreview from './blog-post-preview'
-import styles from './blog-post-preview-grid.module.css'
+
+const useStyles = makeStyles((theme) => ({
+  browseMoreNav: {
+    paddingTop: 20,
+    textAlign: 'center'
+  }
+}))
 
 function BlogPostPreviewGrid (props) {
+  const classes = useStyles()
   return (
-    <div className={styles.root}>
-      {props.title && <h2 className={styles.headline}>{props.title}</h2>}
-      <ul className={styles.grid}>
+    <div>
+      {props.title && <h2>{props.title}</h2>}
+      <Grid container spacing={4}>
         {props.nodes &&
-          props.nodes.map(node => (
-            <li key={node.id}>
-              <BlogPostPreview {...node} />
-            </li>
-          ))}
-      </ul>
+        props.nodes.map(node => (
+          <Grid item sm={12} md={4}>
+            <BlogPostPreview {...node} />
+          </Grid>
+        ))}
+      </Grid>
       {props.browseMoreHref && (
-        <div className={styles.browseMoreNav}>
+        <div className={classes.browseMoreNav}>
           <Link to={props.browseMoreHref}>Browse more</Link>
         </div>
       )}

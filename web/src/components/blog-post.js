@@ -1,19 +1,22 @@
+import {Divider, Grid} from '@material-ui/core'
+import blueGrey from '@material-ui/core/colors/blueGrey'
 import {makeStyles} from '@material-ui/core/styles'
 import {differenceInDays, distanceInWords, format} from 'date-fns'
 import React from 'react'
 
-import styles from '../assets/jss/material-kit-react/views/landingPage'
 import LayoutContainer from '../containers/layout'
 import {buildImageObj} from '../lib/helpers'
 import {imageUrlFor} from '../lib/image-url'
 import AuthorList from './author-list'
-import styles2 from './blog-post.module.css'
 import Container from './container'
 import PortableText from './portableText'
 
-const useStyles = makeStyles(styles)
-
-const dashboardRoutes = []
+const useStyles = makeStyles((theme) => ({
+  publishedAt: {
+    margin: '2rem 0 3rem',
+    color: blueGrey[400]
+  }
+}))
 
 function BlogPost (props) {
   const classes = useStyles()
@@ -26,32 +29,38 @@ function BlogPost (props) {
       .auto('format')
       .url()}>
       <Container>
-        <div className={`${styles2.grid} ${styles2.root}`}>
-          <div className={styles2.mainContent}>
-            <h1 className={styles2.title}>{title}</h1>
-            {_rawBody && <PortableText blocks={_rawBody} />}
-          </div>
-          <aside className={styles2.metaContent}>
-            {publishedAt && (
-              <div className={styles2.publishedAt}>
-                {differenceInDays(new Date(publishedAt), new Date()) > 3
-                  ? distanceInWords(new Date(publishedAt), new Date())
-                  : format(new Date(publishedAt), 'MMMM Do, YYYY')}
-              </div>
-            )}
-            {authors && <AuthorList items={authors} title='Authors' />}
-            {categories && (
-              <div className={styles2.categories}>
-                <h3 className={styles2.categoriesHeadline}>Categories</h3>
-                <ul>
-                  {categories.map(category => (
-                    <li key={category._id}>{category.title}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </aside>
-        </div>
+        <Grid container spacing={4}>
+          <Grid item sm={12} md={8}>
+            <div>
+              <h1>{title}</h1>
+              {_rawBody && <PortableText blocks={_rawBody} />}
+            </div>
+          </Grid>
+          <Grid item sm={12} md={4}>
+            <aside>
+              {publishedAt && (
+                <div className={classes.publishedAt}>
+                  {differenceInDays(new Date(publishedAt), new Date()) > 3
+                    ? distanceInWords(new Date(publishedAt), new Date())
+                    : format(new Date(publishedAt), 'MMMM Do, YYYY')}
+                </div>
+              )}
+              <Divider />
+              {authors && <AuthorList items={authors} title='Authors' />}
+              <Divider />
+              {categories && (
+                <div>
+                  <h3>Categories</h3>
+                  <ul>
+                    {categories.map(category => (
+                      <li key={category._id}>{category.title}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </aside>
+          </Grid>
+        </Grid>
       </Container>
     </LayoutContainer>
   )

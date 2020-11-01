@@ -1,9 +1,22 @@
+import makeStyles from '@material-ui/core/styles/makeStyles'
 import React from 'react'
 
-import styles from './container.module.css'
+const useStyles = makeStyles((theme) => ({
+  root: {
+    boxSizing: 'border-box',
+    maxWidth: '960px',
+    padding: '1.5em',
+    margin: '0 auto',
+    color: '#202123',
+    '@media (min-width: 450px)': {
+      padding: '2em'
+    }
+  }
+}))
 
 const Container = ({children}) => {
-  return <div className={styles.root}>{children}</div>
+  const classes = useStyles()
+  return <div className={classes.root}>{children}</div>
 }
 
 export default Container

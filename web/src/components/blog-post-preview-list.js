@@ -1,17 +1,24 @@
+import {makeStyles} from '@material-ui/core/styles'
 import {Link} from 'gatsby'
 import React from 'react'
 
 import BlogPostPreviewGrid from './blog-post-preview-grid'
-import styles from './blog-post-preview-list.module.css'
-import responsiveTitle1 from './typography.module.css'
+
+const useStyles = makeStyles((theme) => ({
+  browseMoreNav: {
+    paddingTop: 20,
+    textAlign: 'center'
+  }
+}))
 
 function BlogPostPreviewList (props) {
+  const classes = useStyles()
   return (
-    <div className={styles.root}>
-      {props.title && <h1 className={responsiveTitle1}>{props.title}</h1>}
+    <div>
+      {props.title && <h1>{props.title}</h1>}
       {props.nodes && props.nodes.length > 0 && <BlogPostPreviewGrid nodes={props.nodes} />}
       {props.browseMoreHref && (
-        <div className={styles.browseMoreNav}>
+        <div className={classes.browseMoreNav}>
           <Link to={props.browseMoreHref}>Browse more</Link>
         </div>
       )}
