@@ -15,7 +15,7 @@ import Typography from '@material-ui/core/Typography'
 import FacebookIcon from '@material-ui/icons/Facebook'
 import InstagramIcon from '@material-ui/icons/Instagram'
 import MenuIcon from '@material-ui/icons/Menu'
-import YoutubeIcon from '@material-ui/icons/Youtube'
+import YouTubeIcon from '@material-ui/icons/YouTube'
 import {navigate} from 'gatsby-link'
 import React, {useState} from 'react'
 
@@ -52,7 +52,7 @@ const socialLinks = [
     title: 'Youtube',
     tooltip: 'Follow us on youtube',
     url: 'https://www.youtube.com/channel/UCm1ulSwIzrpDFiBKhRqJPZg?ref=twoexploringsouls',
-    icon: <YoutubeIcon />
+    icon: <YouTubeIcon />
   },
   {
     title: 'Facebook',
