@@ -127,6 +127,7 @@ const Header = ({title}) => {
                   <ListItem
                     key={idx}
                     button
+                    component='a'
                     href={lnk.url}
                     target='_blank'
                   >
